@@ -1,0 +1,90 @@
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+
+<div class = "container">
+    <div class = "row col-lg-12 col-sm-12">
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Project Name</th>
+                    <th>Manager Name</th>
+                    <th>Id</th>
+                    <th>Location</th>
+                    <th>Remove User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let user of users">
+                    <td>{{user.email}}</td>
+                    <td>{{user.projectname}}</td>
+                    <td>{{user.managername}}</td>
+                    <td>{{user.id}}</td>
+                    <td>{{user.location}}</td>
+                    <td><button type="button" class="btn btn-primary" (click) = "edit(user)" data-toggle="modal" data-target="#exampleModal">
+                     Update
+                    </button></td>
+                    <td><button class = "btn btn-danger" (click) = "removeUser(user.projectname)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #todoForm="ngForm" >
+          <fieldset>
+              <div class="form-group">
+                  <label for="email">Email Id</label>
+                  <input type="text" disabled [(ngModel)]="usersToUpdate.email" name="email" id="email"
+                      class="form-control" placeholder="Enter Email" required />
+              </div>
+              <div class="form-group">
+                  <label for="projectname">Project Name</label>
+                  <input type="text" [(ngModel)]="usersToUpdate.projectname" name="projectname" id="projectname"
+                  #todoProjectname="ngModel" minlength="4"required ="required"
+                      class="form-control" placeholder="Enter Project Name" />
+                      <div class="alert alert-warning" *ngIf="todoProjectname.dirty && todoProjectname.invalid">Enter atleast 4 characters</div>
+              </div>
+              <div class="form-group">
+                  <label for="managername">Manager Name</label>
+                  <input type="text" [(ngModel)]="usersToUpdate.managername" name="managername" id="managername"
+                      class="form-control" placeholder="Enter Manager Name" required ="required" />
+              </div>
+              <div class="form-group">
+                  <label for="id">Id</label>
+                  <input type="text" [(ngModel)]="usersToUpdate.id" name="id" id="id"  #todoId="ngModel" minlength="6"
+                      class="form-control" placeholder="Enter Id" required ="required" />
+                      <div class="alert alert-warning" *ngIf="todoId.dirty && todoId.invalid">Enter atleast 6 digits</div>
+              </div>
+              <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" [(ngModel)]="usersToUpdate.location" name="location" id="location"#todoLocation="ngModel"
+                      class="form-control"minlength="4" placeholder="Enter Location"required ="required" />
+                      <div class="alert alert-warning" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter atleast 4 characters</div>
+              </div>
+              <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">All fields must be filled</div>
+              <div class="form-group">
+                  <input class="btn btn-success" type="submit" name="submit" value="Update" (click) = "!todoForm.invalid&&updateUser()" >
+              </div>
+              <div class="alert alert-success" *ngIf="todoForm.dirty && todoForm.valid">Updated</div>
+          </fieldset>
+      </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
