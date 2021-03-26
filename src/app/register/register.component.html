@@ -1,47 +1,192 @@
-<div style="text-align: center" >
+<div style="text-align: center">
     <h3 class="text-info"><b>{{message}}</b></h3>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-sm-12">
-            <h4 class = "mt-3 mb-3">Add details</h4>
+            <h4 class="mt-3 mb-3 "><b>Add details</b></h4>
             <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">All fields must be filled</div>
-            <form (ngSubmit)="!todoForm.invalid&&registerNow()" #todoForm="ngForm">
+            <form   (ngSubmit)="!todoForm.invalid&&registerNow()" #todoForm="ngForm">
                 <fieldset>
-                    <div class="form-group">
+
+                    <div class="form-group form-inline col-xs-9 ">
+                        <label class="control-label text-align col-sm-3 " for="cognizantemployeeid">Cognizant Employee Id</label>
+                        <input  type="text" [(ngModel)]="user.cognizantemployeeid" name="cognizantemployeeid"
+                         id="cognizantemployeeid" #todocognizantemployeeid="ngModel" minlength="6"
+                            class="form-control col-sm-9" placeholder="Enter Cognizant Employee Id" required ="required" />
+                            <div class="alert alert-warning col-sm-12" 
+                            *ngIf="todocognizantemployeeid.dirty&&todocognizantemployeeid.invalid">
+                            Enter atleast 6 digits</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="employeename">Employee Name</label>
+                        <input type="text" [(ngModel)]="user.employeename" name="employeename" id="employeename"
+                            #todoemployeename="ngModel" class="form-control col-sm-9" placeholder="Enter Employee Name"
+                            minlength="4" required="required" />
+                        <div class="alert alert-warning col-sm-12" *ngIf="todoemployeename.dirty && todoemployeename.invalid">Enter
+                            atleast 4 characters</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="dukeenergylanid">Duke Energy Lan Id</label>
+                        <input type="text" [(ngModel)]="user.dukeenergylanid" name="dukeenergylanid"
+                         id="dukeenergylanid" #tododukeenergylanid="ngModel" minlength="6"
+                            class="form-control col-sm-9" placeholder="Enter Duke Energy Lan Id" required ="required" />
+                            <div class="alert alert-warning col-sm-12" 
+                            *ngIf="tododukeenergylanid.dirty&&tododukeenergylanid.invalid">
+                            Enter atleast 6 digits</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3 "for="dukeenergyemployeeid">Duke Energy Employee Id</label>
+                        <input type="text" [(ngModel)]="user.dukeenergyemployeeid" name="dukeenergyemployeeid"
+                         id="dukeenergyemployeeid" #tododukeenergyemployeeid="ngModel" minlength="6"
+                            class="form-control col-sm-9" placeholder="Enter Duke Energy Employee Id" required ="required" />
+                            <div class="alert alert-warning col-sm-12" 
+                            *ngIf="tododukeenergyemployeeid.dirty&&tododukeenergyemployeeid.invalid">
+                            Enter atleast 6 digits</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="projectid">Project Id</label>
+                        <input type="text" [(ngModel)]="user.projectid" name="projectid"
+                         id="projectid" #todoprojectid="ngModel" minlength="6"
+                            class="form-control col-sm-9" placeholder="Enter Project Id" required ="required" />
+                            <div class="alert alert-warning col-sm-12" 
+                            *ngIf="todoprojectid.dirty&&todoprojectid.invalid">
+                            Enter atleast 6 digits</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="projectname">Project Name</label>
+                        <input type="text" [(ngModel)]="user.projectname" name="projectname" id="projectname"
+                            #todoProjectname="ngModel" class="form-control col-sm-9" placeholder="Enter Project Name"
+                            minlength="4" required="required" />
+                        <div class="alert alert-warning col-sm-12" *ngIf="todoProjectname.dirty && todoProjectname.invalid">Enter
+                            atleast 4 characters</div>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="offshoremanagername">Offshore Manager Name</label>
+                        <input type="text" [(ngModel)]="user.offshoremanagername" name="offshoremanagername" 
+                        id="offshoremanagername"class="form-control col-sm-9 " placeholder="Enter Offshore Manager Name" 
+                        required="required" />
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3 "for="onsitemanagername">Onsite Manager Name</label>
+                        <input type="text" [(ngModel)]="user.onsitemanagername" name="onsitemanagername" 
+                        id="onsitemanagername"class="form-control col-sm-9" placeholder="Enter Onsite Manager Name" 
+                        required="required" />
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="status">Status</label>
+                        <select type="text" [(ngModel)]="user.status" name="status" 
+                        id="status"class="form-control col-sm-9" placeholder="Enter Status" 
+                        required="required" >
+                        <option selected="selected" value="Onboarded">Onboarded</option>
+                        <option value="Offboarded">Offboarded</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="dateonboarded">Date Onboarded</label>
+                        <input type="date" [ngModel]="user.dateonboarded|date:'yyyy-MM-dd'" 
+                        (ngModelChange)="user.dateonboarded=$event" name="dateonboarded" 
+                        id="dateonboarded"class="form-control col-sm-9" placeholder="Enter Onboarding Date" 
+                        required="required" />
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="dateoffboarded">Date Offboarded</label>
+                        <input type="date" [ngModel]="user.dateoffboarded|date:'yyyy-MM-dd'" 
+                        (ngModelChange)="user.dateoffboarded=$event" name="dateoffboarded" 
+                        id="dateoffboarded"class="form-control col-sm-9" placeholder="Enter Offboarding Date" 
+                        required="required" />
+                    </div>
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3 "for="phonenumber">Contact Number</label>
+                        <input type="text" [(ngModel)]="user.phonenumber" name="phonenumber" id="phonenumber" 
+                        #todophonenumber="ngModel"class="form-control col-sm-9" placeholder="Enter Phone Number" 
+                        minlength="10" required="required" />
+                        <div class="alert alert-warning col-sm-12" *ngIf="todophonenumber.dirty && todophonenumber.invalid">
+                            Enter atleast 10 digits
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="onsiteoffshore">Onsite/Offshore</label>
+                        <select type="text" [(ngModel)]="user.onsiteoffshore" name="onsiteoffshore" 
+                        id="onsiteoffshore"class="form-control col-sm-9" placeholder="Enter Onsite/Offshore" 
+                        required="required" >
+                        <option selected="selected" value="Onsite">Onsite</option>
+                        <option value="Offshore">Offshore</option>
+                        </select>
+                    </div>
+                    
+
+                    <div class="form-group form-inline col-xs-9">
+                        <label class="control-label col-sm-3" for="location">Location</label>
+                        <input type="text" [(ngModel)]="user.location" name="location" id="location"
+                            #todoLocation="ngModel" class="form-control col-sm-9" placeholder="Enter Location" minlength="4"
+                            required="required" />
+                        <div class="alert alert-warning col-sm-12" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter
+                            atleast 4 characters</div>
+                    </div>
+
+                   <!---- <div class="form-group">
+                        <label for="dateonnboarded">Date onnboarded</label>
+                        <input type="date" [ngModel]="user.dateonnboarded|date:'yyyy-MM-dd'" 
+                        (ngModelChange)="user.dateonnboarded=$event" name="dateonnboarded" id="dateonnboarded"
+                            class="form-control" placeholder="Enter Date onnboarded" required="required" />
+                    </div>-->
+
+
+
+
+                <!--    <div class="form-group">
                         <label for="email">Email Id</label>
                         <input type="text" [(ngModel)]="user.email" name="email" id="email"
-                        pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" #todoemail="ngModel"
-                            class="form-control" placeholder="Enter Email" required ="required" />
-                            <div class="alert alert-warning" *ngIf="todoemail.dirty && todoemail.invalid">
-                                Please enter a valid email</div>
+                            pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" #todoemail="ngModel" class="form-control"
+                            placeholder="Enter Email" required="required" />
+                        <div class="alert alert-warning" *ngIf="todoemail.dirty && todoemail.invalid">
+                            Please enter a valid email</div>
                     </div>
                     <div class="form-group">
                         <label for="projectname">Project Name</label>
-                        <input type="text" [(ngModel)]="user.projectname" name="projectname" id="projectname" #todoProjectname="ngModel"
-                            class="form-control" placeholder="Enter Project Name" minlength="4"required ="required" />
-                            <div class="alert alert-warning" *ngIf="todoProjectname.dirty && todoProjectname.invalid">Enter atleast 4 characters</div>
+                        <input type="text" [(ngModel)]="user.projectname" name="projectname" id="projectname"
+                            #todoProjectname="ngModel" class="form-control" placeholder="Enter Project Name"
+                            minlength="4" required="required" />
+                        <div class="alert alert-warning" *ngIf="todoProjectname.dirty && todoProjectname.invalid">Enter
+                            atleast 4 characters</div>
                     </div>
                     <div class="form-group">
                         <label for="managername">Manager Name</label>
                         <input type="text" [(ngModel)]="user.managername" name="managername" id="managername"
-                            class="form-control" placeholder="Enter Manager Name" required ="required" />
+                            class="form-control" placeholder="Enter Manager Name" required="required" />
                     </div>
                     <div class="form-group">
                         <label for="id">Id</label>
                         <input type="text" [(ngModel)]="user.id" name="id" id="id" #todoId="ngModel"
-                            class="form-control" placeholder="Enter Id" minlength="6"required ="required" />
-                            <div class="alert alert-warning" *ngIf="todoId.dirty && todoId.invalid">Enter atleast 6 digits</div>
+                            class="form-control" placeholder="Enter Id" minlength="6" required="required" />
+                        <div class="alert alert-warning" *ngIf="todoId.dirty && todoId.invalid">Enter atleast 6 digits
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" [(ngModel)]="user.location" name="location" id="location" #todoLocation="ngModel"
-                            class="form-control" placeholder="Enter Location"minlength="4" required ="required" />
-                            <div class="alert alert-warning" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter atleast 4 characters</div>
-                    </div>
+                        <input type="text" [(ngModel)]="user.location" name="location" id="location"
+                            #todoLocation="ngModel" class="form-control" placeholder="Enter Location" minlength="4"
+                            required="required" />
+                        <div class="alert alert-warning" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter
+                            atleast 4 characters</div>
+                    </div> -->
                     <div class="form-group">
-                        <input class="btn btn-success" type="submit" name="submit" value="Add"  >
+                        <input class="btn btn-success" type="submit" name="submit" value="Add">
                     </div>
                 </fieldset>
             </form>

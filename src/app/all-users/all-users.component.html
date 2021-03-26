@@ -2,30 +2,73 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/wow.min.js"></script>
 
-<div class = "container">
-    <div class = "row col-lg-12 col-sm-12">
-        <table class = "table table-striped">
+<div class = "container ml-0 mt-5">
+    <div class = "row col-lg-12 col-sm-12 xs-12 ">
+        <div class="form-group">
+            <strong>Status</strong>
+            <select class="form-control"
+                    [(ngModel)]="status">
+              <option></option>      
+              <option value="Onboarded">Onboarded</option>
+              <option value="Offboarded">Offboarded</option>
+            </select>
+          </div>  
+        <table class = "table table-striped table-sm">
             <thead>
-                <tr>
-                    <th>Email</th>
+                <tr class="bg-info text-light ">
+                    <th>Cognizant Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Duke Energy Lan Id</th>
+                    <th>Duke Energy Employee Id</th>
+                    <th>Project Id</th>
+                    <th>Project Name</th>
+                    <th>Offshore Manager Name</th>
+                    <th>Onsite Manager Name</th>
+                    <th>Status</th>
+                    <th>Date Onboarded</th>
+                    <th>Date Offboarded</th>
+                    <th>Contact Number</th>
+                    <th>Onsite/
+                        Offshore </th>
+                    <th>Location</th>
+                    <th>Update User</th>
+                    <th>Remove User</th>
+                    
+                   <!---- <th>Email</th>
                     <th>Project Name</th>
                     <th>Manager Name</th>
                     <th>Id</th>
                     <th>Location</th>
-                    <th>Remove User</th>
+                    <th>Remove User</th>-->
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor = "let user of users">
-                    <td>{{user.email}}</td>
+                <tr *ngFor = "let user of users | tableFilter: status">
+                    <td>{{user.cognizantemployeeid}}</td>
+                    <td>{{user.employeename}}</td>
+                    <td>{{user.dukeenergylanid}}</td>
+                    <td>{{user.dukeenergyemployeeid}}</td>
+                    <td>{{user.projectid}}</td>
+                    <td>{{user.projectname}}</td>
+                    <td>{{user.offshoremanagername}}</td>
+                    <td>{{user.onsitemanagername}}</td>
+                    <td>{{user.status}}</td>
+                    <td>{{user.dateonboarded}}</td>
+                    <td>{{user.dateoffboarded}}</td>
+                    <td>{{user.phonenumber}}</td>
+                    <td>{{user.onsiteoffshore}}</td>
+                    <td>{{user.location}}</td>
+                    <!--<td>{{user.dateonnboarded}}</td>
+                    --<td>{{user.email}}</td>
                     <td>{{user.projectname}}</td>
                     <td>{{user.managername}}</td>
                     <td>{{user.id}}</td>
-                    <td>{{user.location}}</td>
+                    <td>{{user.location}}</td>-->
                     <td><button type="button" class="btn btn-primary" (click) = "edit(user)" data-toggle="modal" data-target="#exampleModal">
                      Update
                     </button></td>
-                    <td><button class = "btn btn-danger" (click) = "removeUser(user.projectname)">Delete</button></td>
+                    
+                    <td><button class = "btn btn-danger" (click) = "removeUser(user.cognizantemployeeid)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -35,8 +78,8 @@
 
 
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
@@ -47,6 +90,143 @@
       <div class="modal-body">
         <form #todoForm="ngForm" >
           <fieldset>
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="cognizantemployeeid">Cognizant Employee Id</label>
+                <input type="text" [(ngModel)]="usersToUpdate.cognizantemployeeid" name="cognizantemployeeid"
+                 id="cognizantemployeeid" #todocognizantemployeeid="ngModel" minlength="6" disabled
+                    class="form-control  col-sm-9" placeholder="Enter Cognizant Employee Id" required ="required" />
+                    <div class="alert alert-warning  col-sm-9" 
+                    *ngIf="todocognizantemployeeid.dirty&&todocognizantemployeeid.invalid">
+                    Enter atleast 6 digits</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 "for="employeename">Employee Name</label>
+                <input type="text" [(ngModel)]="usersToUpdate.employeename" name="employeename" id="employeename"
+                    #todoemployeename="ngModel" class="form-control  col-sm-9" placeholder="Enter Employee Name"
+                    minlength="4" required="required" />
+                <div class="alert alert-warning  col-sm-9" *ngIf="todoemployeename.dirty && todoemployeename.invalid">Enter
+                    atleast 4 characters</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="dukeenergylanid">Duke Energy Lan Id</label>
+                <input type="text" [(ngModel)]="usersToUpdate.dukeenergylanid" name="dukeenergylanid"
+                 id="dukeenergylanid" #tododukeenergylanid="ngModel" minlength="6"
+                    class="form-control  col-sm-9" placeholder="Enter Duke Energy Lan Id" required ="required" />
+                    <div class="alert alert-warning  col-sm-9" 
+                    *ngIf="tododukeenergylanid.dirty&&tododukeenergylanid.invalid">
+                    Enter atleast 6 digits</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="dukeenergyemployeeid">Duke Energy Employee Id</label>
+                <input type="text" [(ngModel)]="usersToUpdate.dukeenergyemployeeid" name="dukeenergyemployeeid"
+                 id="dukeenergyemployeeid" #tododukeenergyemployeeid="ngModel" minlength="6"
+                    class="form-control  col-sm-9" placeholder="Enter Duke Energy Employee Id" required ="required" />
+                    <div class="alert alert-warning  col-sm-9" 
+                    *ngIf="tododukeenergyemployeeid.dirty&&tododukeenergyemployeeid.invalid">
+                    Enter atleast 6 digits</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label  class="control-label text-align col-sm-3 " for="projectid">Project Id</label>
+                <input type="text" [(ngModel)]="usersToUpdate.projectid" name="projectid"
+                 id="projectid" #todoprojectid="ngModel" minlength="6"
+                    class="form-control  col-sm-9" placeholder="Enter Project Id" required ="required" />
+                    <div class="alert alert-warning  col-sm-9" 
+                    *ngIf="todoprojectid.dirty&&todoprojectid.invalid">
+                    Enter atleast 6 digits</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="projectname">Project Name</label>
+                <input type="text" [(ngModel)]="usersToUpdate.projectname" name="projectname" id="projectname"
+                    #todoProjectname="ngModel" class="form-control  col-sm-9" placeholder="Enter Project Name"
+                    minlength="4" required="required" />
+                <div class="alert alert-warning  col-sm-9" *ngIf="todoProjectname.dirty && todoProjectname.invalid">Enter
+                    atleast 4 characters</div>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="offshoremanagername">Offshore Manager Name</label>
+                <input type="text" [(ngModel)]="usersToUpdate.offshoremanagername" name="offshoremanagername" 
+                id="offshoremanagername"class="form-control  col-sm-9" placeholder="Enter Offshore Manager Name" 
+                required="required" />
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="onsitemanagername">Onsite Manager Name</label>
+                <input type="text" [(ngModel)]="usersToUpdate.onsitemanagername" name="onsitemanagername" 
+                id="onsitemanagername"class="form-control  col-sm-9" placeholder="Enter Onsite Manager Name" 
+                required="required" />
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="status">Status</label>
+                <select type="text" [(ngModel)]="usersToUpdate.status" name="status" 
+                id="status"class="form-control  col-sm-9" placeholder="Enter Status" 
+                required="required" >
+                <option selected="selected" value="Onboarded">Onboarded</option>
+                <option value="Offboarded">Offboarded</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="dateonboarded">Date Onboarded</label>
+                <input type="date" [ngModel]="usersToUpdate.dateonboarded|date:'yyyy-MM-dd'" 
+                (ngModelChange)="usersToUpdate.dateonboarded=$event"name="dateonboarded" 
+                id="dateonboarded"class="form-control  col-sm-9" placeholder="Enter Onboarding Date" 
+                required="required" />
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="dateoffboarded">Date Offboarded</label>
+                <input type="date" [ngModel]="usersToUpdate.dateoffboarded|date:'yyyy-MM-dd'" 
+                (ngModelChange)="usersToUpdate.dateoffboarded=$event" name="dateoffboarded" 
+                id="dateoffboarded"class="form-control  col-sm-9" placeholder="Enter Offboarding Date" 
+                required="required" />
+            </div>
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="phonenumber">Contact Number</label>
+                <input type="text" [(ngModel)]="usersToUpdate.phonenumber" name="phonenumber" id="phonenumber" 
+                #todophonenumber="ngModel"class="form-control  col-sm-9" placeholder="Enter Phone Number" 
+                minlength="10" required="required" />
+                <div class="alert alert-warning" *ngIf="todophonenumber.dirty && todophonenumber.invalid">
+                    Enter atleast 10 digits
+                </div>
+            </div>
+            
+            
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="onsiteoffshore">Onsite/Offshore</label>
+                <select type="text" [(ngModel)]="usersToUpdate.onsiteoffshore" name="onsiteoffshore" 
+                id="onsiteoffshore"class="form-control  col-sm-9" placeholder="Enter Onsite/Offshore" 
+                required="required" >
+                <option selected="selected" value="Onsite">Onsite</option>
+                <option value="Offshore">Offshore</option>
+                </select>
+            </div>
+            
+
+            <div class="form-group form-inline col-xs-9">
+                <label class="control-label text-align col-sm-3 " for="location">Location</label>
+                <input type="text" [(ngModel)]="usersToUpdate.location" name="location" id="location"
+                    #todoLocation="ngModel" class="form-control  col-sm-9" placeholder="Enter Location" minlength="4"
+                    required="required" />
+                <div class="alert alert-warning col-sm-9" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter
+                    atleast 4 characters</div>
+            </div>
+
+
+           <!---- <div class="form-group">
+                <label for="dateonnboarded">Date onnboarded</label>
+                <input type="date" [ngModel]="usersToUpdate.dateonnboarded|date:'yyyy-MM-dd'" 
+                (ngModelChange)="usersToUpdate.dateonnboarded=$event" name="dateonnboarded" id="dateonnboarded"
+                    class="form-control" placeholder="Enter Date onnboarded" required="required" />
+            </div>
+             
               <div class="form-group">
                   <label for="email">Email Id</label>
                   <input type="text" disabled [(ngModel)]="usersToUpdate.email" name="email" id="email"
@@ -75,7 +255,7 @@
                   <input type="text" [(ngModel)]="usersToUpdate.location" name="location" id="location"#todoLocation="ngModel"
                       class="form-control"minlength="4" placeholder="Enter Location"required ="required" />
                       <div class="alert alert-warning" *ngIf="todoLocation.dirty && todoLocation.invalid">Enter atleast 4 characters</div>
-              </div>
+              </div>-->
               <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">All fields must be filled</div>
               <div class="form-group">
                   <input class="btn btn-success" type="submit" name="submit" value="Update" (click) = "!todoForm.invalid&&updateUser()" >

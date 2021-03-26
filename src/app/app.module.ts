@@ -13,6 +13,8 @@ import { DukeprojComponent } from './dukeproj/dukeproj.component';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableFilterPipe } from './table-filter.pipe';
+
 
 
 
@@ -24,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SearchComponent,
     AllUsersComponent,
     RegisterComponent,
-    DukeprojComponent
+    DukeprojComponent,
+    TableFilterPipe
   ],
   imports: [
     BrowserModule,

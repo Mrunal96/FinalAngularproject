@@ -15,11 +15,12 @@ export class UserServiceService {
   public getUsers(){
     return this.http.get("http://localhost:8080/all-users");
   }
-  public getUserByProjectname(projectname : any){
-    return this.http.get("http://localhost:8080/find-users/"+projectname);
+  public getUserByProjectname(cognizantemployeeid : any){
+    return this.http.get("http://localhost:8080/find-users/"+cognizantemployeeid);
   }
-  public removeUser(projectname : string){
-    return this.http.get("http://localhost:8080/delete-user/"+projectname);
+  
+  public removeUser(cognizantemployeeid : number){
+    return this.http.get("http://localhost:8080/delete-user/"+cognizantemployeeid);
   }
   public updateUser(user : User){
     return this.http.put("http://localhost:8080/update",user);

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../user';
 import {UserServiceService} from '../user-service.service';
+
 @Component({
   selector: 'app-all-users',
   templateUrl: './all-users.component.html',
@@ -9,22 +12,40 @@ import {UserServiceService} from '../user-service.service';
 export class AllUsersComponent implements OnInit {
 
   users : any;
+  status: string;
   usersToUpdate ={
-    email : "",
+    cognizantemployeeid  :  0,
+    employeename         :  "",
+    dukeenergylanid      :  0,
+    dukeenergyemployeeid :  0,
+    projectid            :  0,
+    projectname          :  "",
+    offshoremanagername  :  "",
+    onsitemanagername    :  "",
+    status               :  "",
+    dateonboarded        :  new Date(),
+    dateoffboarded       :  new Date(),
+    phonenumber          :  0,
+    onsiteoffshore       :  "",
+    location             :  ""
+   /* email : "",
     projectname:"",
     managername:"",
     id:0,
-    location:""
+    location:""*/
+    
   };
   
-  constructor(private service : UserServiceService) { }
-
+ 
+  
+  constructor(private service : UserServiceService) {this.status=""}
+  
   ngOnInit(): void {
     let response = this.service.getUsers();
   response.subscribe(data => this.users = data);
   }
-  public removeUser(projectname : string){
-    let response = this.service.removeUser(projectname);
+  public removeUser(cognizantemployeeid : number){
+    let response = this.service.removeUser(cognizantemployeeid);
     response.subscribe(data => this.users = data);
   }
   edit(user : any){

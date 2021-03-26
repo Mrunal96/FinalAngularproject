@@ -7,14 +7,14 @@ import {UserServiceService} from '../user-service.service'
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  projectname : string = "";
+  cognizantemployeeid:any;
   user : any;
   constructor(private service : UserServiceService) { }
 
   ngOnInit(): void {
   }
   public findUserbyProjectname(){
-    let response = this.service.getUserByProjectname(this.projectname);
+    let response = this.service.getUserByProjectname(this.cognizantemployeeid);
     response.subscribe(data => this.user = data);
   }
 

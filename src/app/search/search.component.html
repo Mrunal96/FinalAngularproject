@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-lg-9 col-sm-12 mt-5">
-            <input type="text" placeholder="Enter Project Name" class="form-control" name="projectname" [(ngModel)]="projectname">
+            <input type="text" placeholder="Enter Cognizant Employee Id" class="form-control" name="cognizantemployeeid" [(ngModel)]="cognizantemployeeid">
         </div>
         <div class="col-lg-3 col-sm-12 mt-5">
             <button type="button" class="btn btn-info" (click) = "findUserbyProjectname()">Search</button>
@@ -10,23 +10,53 @@
     </div>
     <h2 class="mt-5">Results</h2>
     <div class="row col-lg-12 col-sm-12">
-        <table class="table">
-            <thead>
+        <table class="table table-striped  table-sm ml-0 mt-5 ">
+            <thead class="container bg-info text-light ">
                 <tr>
-                    <th>Email</th>
+                    <th>Cognizant Employee Id</th>
+                    <th>Employee Name</th>
+                    <th>Duke Energy Lan Id</th>
+                    <th>Duke Energy Employee Id</th>
+                    <th>Project Id</th>
+                    <th>Project Name</th>
+                    <th>Offshore Manager Name</th>
+                    <th>Onsite Manager Name</th>
+                    <th>Status</th>
+                    <th>Date Onboarded</th>
+                    <th>Date Offboarded</th>
+                    <th>Contact Number</th>
+                    <th>Onsite/
+                        Offshore</th>
+                    <th>Location</th>
+                   <!----<th>Email</th>
                     <th>Project Name</th>
                     <th>Manager Name</th>
                     <th>Id</th>
-                    <th>Location</th>
+                    <th>Location</th>-->
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{user.email}}</td>
+                    <td>{{user.cognizantemployeeid}}</td>
+                    <td>{{user.employeename}}</td>
+                    <td>{{user.dukeenergylanid}}</td>
+                    <td>{{user.dukeenergyemployeeid}}</td>
+                    <td>{{user.projectid}}</td>
+                    <td>{{user.projectname}}</td>
+                    <td>{{user.offshoremanagername}}</td>
+                    <td>{{user.onsitemanagername}}</td>
+                    <td>{{user.status}}</td>
+                    <td>{{user.dateonboarded}}</td>
+                    <td>{{user.dateoffboarded}}</td>
+                    <td>{{user.phonenumber}}</td>
+                    <td>{{user.onsiteoffshore}}</td>
+                    <td>{{user.location}}</td>
+                   <!---- <td>{{user.dateonnboarded}}</td>
+                   ---- <td>{{user.email}}</td>
                     <td>{{user.projectname}}</td>
                     <td>{{user.managername}}</td>
                     <td>{{user.id}}</td>
-                    <td>{{user.location}}</td>
+                    <td>{{user.location}}</td>-->
                 </tr>
             </tbody>
         </table>
